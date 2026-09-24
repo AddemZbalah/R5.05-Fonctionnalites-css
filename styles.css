@@ -1,0 +1,491 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700&display=swap');
+
+:root {
+  --bg-desk: #8c5f3b; /* Couleur bois chaleureux pour le bureau */
+  --paper: #ffffff; /* Couleur de la feuille */
+  --text: #1e293b;
+  --ink-blue: #0369a1; /* Stylo bille bleu */
+  --ink-red: #dc2626; /* Stylo rouge du prof */
+  --grid-line: #bae6fd; /* Lignes bleu clair du cahier */
+  --tape: #1e3a8a; /* Scotch toilé de la reliure */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Le fond du site représente la table en bois */
+body {
+  margin: 0;
+  font-family: "Nunito", Tahoma, Arial, sans-serif;
+  background-color: var(--bg-desk);
+  background-image: 
+    radial-gradient(circle at 50% 10%, rgba(255,255,255,0.1), transparent 70%),
+    linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, transparent 10%, transparent 90%, rgba(0,0,0,0.3) 100%);
+  color: var(--text);
+}
+
+p, h1, h2, h3 {
+  margin-top: 0;
+}
+
+/* Le conteneur principal devient LE CAHIER */
+.page {
+  max-width: 1100px;
+  margin: 3rem auto;
+  background-color: var(--paper);
+  position: relative;
+  /* Bords arrondis uniquement à droite pour simuler les pages */
+  border-radius: 2px 15px 15px 2px; 
+  /* Ombre portée sur le bureau */
+  box-shadow: 
+    20px 20px 40px rgba(0,0,0,0.5), 
+    inset -5px 0 15px rgba(0,0,0,0.03); 
+  /* Espace à gauche pour la reliure et la marge */
+  padding: 3rem 2rem 4rem 7rem; 
+  
+  /* Lignes bleues du cahier */
+  background-image: repeating-linear-gradient(
+    transparent, 
+    transparent 1.55rem, 
+    var(--grid-line) 1.55rem, 
+    var(--grid-line) 1.6rem
+  );
+  background-position: 0 0;
+}
+
+/* La reliure toilée (scotch bleu) sur le bord gauche */
+.page::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 45px;
+  background-color: var(--tape);
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.08) 2px, rgba(255,255,255,0.08) 4px),
+    linear-gradient(to right, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.3) 100%);
+  border-right: 2px solid rgba(0,0,0,0.3);
+  box-shadow: 4px 0 8px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+/* La marge rouge continue */
+.page::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 5.5rem;
+  width: 2px;
+  background-color: rgba(220, 38, 38, 0.4);
+  z-index: 1;
+}
+
+/* Grille pour organiser les notes */
+.feature-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.5rem;
+  position: relative;
+  z-index: 2; /* Pour passer au-dessus de la marge rouge */
+}
+
+/* On retire l'effet "carte" pour fondre les éléments sur la page */
+.card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  gap: 0.8rem;
+}
+
+.feature[hidden] {
+  display: none;
+}
+
+/* En-têtes style notes manuscrites */
+.feature-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  padding-bottom: 0.2rem;
+}
+
+.feature-no {
+  font-family: "Caveat", cursive;
+  font-size: 1.8rem;
+  color: var(--ink-red);
+  font-weight: 700;
+  transform: rotate(-3deg);
+}
+
+.feature-no::after { content: ')'; }
+
+.feature h2 {
+  margin: 0;
+  font-family: "Caveat", cursive;
+  font-size: 2.2rem;
+  color: var(--ink-blue);
+  letter-spacing: 0.02em;
+}
+
+/* Texte ajusté sur les lignes du cahier */
+.feature-text {
+  color: var(--text);
+  line-height: 1.6rem; /* Correspond exactement à l'espacement des lignes du fond ! */
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  /* Léger halo blanc pour que le texte reste lisible par-dessus les lignes bleues */
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+/* Code = Bloc collé sur la page */
+pre {
+  margin: 0;
+  background: #1e293b;
+  color: #f8fafc;
+  border-radius: 4px;
+  padding: 1rem;
+  border-left: 4px solid var(--ink-blue);
+  box-shadow: 2px 3px 6px rgba(0,0,0,0.2);
+}
+
+code {
+  font-family: "Consolas", "Courier New", monospace;
+  font-size: 0.85rem;
+}
+
+/* Encadrés de démonstration "Travaux Pratiques" */
+.demo {
+  padding: 1rem 1rem 1.5rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 2px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
+  position: relative;
+}
+
+.demo::before {
+  content: 'Exemple Pratique';
+  position: absolute;
+  top: -0.8rem;
+  left: 0.5rem;
+  background: #ffffff;
+  padding: 0 0.5rem;
+  font-family: "Caveat", cursive;
+  font-size: 1.1rem;
+  color: var(--ink-red);
+  transform: rotate(-2deg);
+}
+
+.demo-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.demo-control {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.demo-control input[type="range"] { width: 8.5rem; }
+
+.demo-control input[type="text"] {
+  width: min(100%, 16rem);
+  border: 1px solid #94a3b8;
+  border-radius: 2px;
+  padding: 0.45rem 0.6rem;
+  font: inherit;
+  color: var(--text);
+}
+
+.demo-control button {
+  border: 2px solid var(--ink-blue);
+  background: transparent;
+  color: var(--ink-blue);
+  border-radius: 2px;
+  padding: 0.45rem 0.8rem;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-control button:hover {
+  background: var(--ink-blue);
+  color: #fff;
+}
+
+/* Tableaux de notes dessinés */
+.compatibility-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.compatibility {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  text-shadow: 1px 1px 0px rgba(255,255,255,0.8);
+}
+
+.compatibility th {
+  color: var(--ink-blue);
+  font-family: "Caveat", cursive;
+  font-size: 1.25rem;
+  border-bottom: 2px solid var(--ink-blue);
+  padding: 0.2rem;
+  text-align: left;
+}
+
+.compatibility td {
+  padding: 0.3rem 0.2rem;
+  border-bottom: 1px dotted var(--ink-blue);
+  font-weight: 700;
+}
+
+/* Post-it pour les fallbacks */
+.fallback {
+  background: #fef08a; /* Jaune post-it */
+  color: #451a03;
+  padding: 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-top: auto;
+  box-shadow: 2px 4px 6px rgba(0,0,0,0.15);
+  transform: rotate(-1deg);
+  border-bottom-right-radius: 12px;
+}
+
+.fallback strong {
+  color: #9a3412;
+  font-family: "Caveat", cursive;
+  font-size: 1.2rem;
+}
+
+/* --- Styles spécifiques des composants des démos --- */
+.demo-container .container-box {
+  width: min(100%, 18rem);
+  margin: 0 auto;
+  min-height: 4.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 4px;
+  background: #bae6fd;
+  color: #0c4a6e;
+  font-weight: 800;
+  container-type: inline-size;
+  border: 2px dashed #0ea5e9;
+}
+
+@container (min-width: 22rem) {
+  .demo-container .container-box {
+    background: #86efac;
+    border-color: #16a34a;
+    color: #14532d;
+  }
+}
+
+.demo-has { display: grid; place-items: center; }
+
+.demo-has .toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: min(100%, 20rem);
+  padding: 0.7rem 0.9rem;
+  background: #fff;
+  border: 2px solid #cbd5e1;
+  border-radius: 4px;
+  color: var(--text);
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.demo-has:has(input:checked) .toggle {
+  border-color: var(--ink-blue);
+  background: #eff6ff;
+  color: var(--ink-blue);
+}
+
+.demo-balance h3 {
+  max-width: 18ch;
+  margin: 0 auto;
+  text-align: center;
+  font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+  line-height: 1.15;
+  text-wrap: balance;
+  font-family: "Nunito", sans-serif;
+}
+
+.demo-color {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.color-box {
+  min-height: 5rem;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  border: 2px solid rgba(0,0,0,0.1);
+}
+
+.color-box:first-child { background: color-mix(in srgb, #2563eb 70%, #dbeafe 30%); color: white; }
+.color-box:last-child { background: color-mix(in srgb, #f97316 60%, #fef3c7 40%); color: #2b1400; }
+
+@property --progress {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
+}
+
+.demo-property { display: grid; place-items: center; }
+
+.progress-bar {
+  width: min(100%, 20rem);
+  height: 2rem;
+  border-radius: 4px;
+  background: #e2e8f0;
+  border: 2px solid #94a3b8;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--progress) * 1%);
+  background: repeating-linear-gradient(45deg, #3b82f6, #3b82f6 10px, #2563eb 10px, #2563eb 20px);
+}
+
+.progress-bar span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+@layer base, theme;
+.demo-layer { display: grid; place-items: center; gap: 0.7rem; }
+.layer-demo-text { margin: 0; font-size: 0.85rem; font-weight: 700; color: var(--text); }
+
+@layer base {
+  .layer-button {
+    padding: 0.7rem 1rem;
+    border: 2px solid #cbd5e1;
+    border-radius: 4px;
+    font: inherit; font-weight: 800;
+    background: #f1f5f9; color: #0f172a;
+    transition: all 0.2s ease;
+  }
+}
+
+@layer theme {
+  .demo-layer.is-enabled .layer-button {
+    background: #fef08a;
+    border-color: #eab308;
+    color: #713f12;
+  }
+}
+
+.demo-lightdark { display: grid; place-items: center; }
+.theme-card {
+  width: min(100%, 18rem);
+  min-height: 6rem;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: light-dark(#ffffff, #1e293b);
+  color: light-dark(#0f172a, #f8fafc);
+  border: 2px dashed #94a3b8;
+}
+
+.demo-lightdark.is-dark { color-scheme: dark; }
+.demo-lightdark.is-light { color-scheme: light; }
+
+.demo-clamp { display: grid; place-items: center; }
+.demo-clamp p {
+  width: clamp(12rem, 45vw, 20rem);
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  font-family: "Caveat", cursive;
+  font-weight: 700;
+  color: var(--ink-blue);
+  background: #e0f2fe;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.demo-snap { overflow: hidden; }
+.snap-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(9rem, 1fr);
+  gap: 0.6rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.5rem;
+}
+
+.snap-card {
+  scroll-snap-align: start;
+  min-height: 5.5rem;
+  border-radius: 4px;
+  display: grid; place-items: center;
+  font-weight: 800; background: #fed7aa;
+  color: #7c2d12; border: 2px solid #fdba74;
+}
+
+.demo-ratio { display: grid; place-items: center; }
+.ratio-box {
+  width: min(100%, 20rem);
+  aspect-ratio: 16 / 9;
+  display: grid; place-items: center;
+  border-radius: 4px; font-weight: 800;
+  background: #a7f3d0; color: #064e3b;
+  border: 2px solid #6ee7b7;
+}
+
+/* Adaptation Mobile */
+@media (max-width: 700px) {
+  body {
+    background-image: none; /* Allège le rendu mobile */
+  }
+  .page {
+    margin: 0;
+    border-radius: 0;
+    padding: 2rem 1rem 3rem 4rem;
+  }
+  .page::after {
+    left: 2.8rem; /* Rapproche la marge rouge */
+  }
+}

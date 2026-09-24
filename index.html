@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CSS modernes — cheat sheet</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="page">
+      <section class="feature-list">
+        <article class="feature card" id="container" data-name="container queries @container">
+          <div class="feature-header">
+            <span class="feature-no">01</span>
+            <h2>@container</h2>
+          </div>
+          <p class="feature-text">Les styles réagissent à la taille du conteneur, pas seulement à la fenêtre du navigateur. Cela permet de créer des composants adaptatifs plus robustes.</p>
+          <pre><code>.card {
+  container-type: inline-size;
+}
+
+@container (min-width: 22rem) {
+  .card { background: #22c55e; }
+}</code></pre>
+
+          <div class="demo demo-container">
+            <div class="container-box">Redimensionne-moi</div>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>92%</td></tr>
+                <tr><td>Edge</td><td>92%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>90%</td></tr>
+                <tr><td>Safari</td><td>88%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> si le navigateur ne le supporte pas, on garde un style de base simple et on évite d’en dépendre pour la mise en page principale.
+          </div>
+        </article>
+
+        <article class="feature card" id="has" data-name="has selector :has()">
+          <div class="feature-header">
+            <span class="feature-no">02</span>
+            <h2>:has()</h2>
+          </div>
+          <p class="feature-text">Le sélecteur :has() permet de cibler un parent selon ce qu’il contient. C’est pratique pour styliser des cartes ou des formulaires selon leur contenu.</p>
+          <pre><code>.card:has(input:checked) {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56,189,248,.2);
+}</code></pre>
+
+          <div class="demo demo-has">
+            <label class="toggle">
+              <input type="checkbox">
+              <span>Activer le mode premium</span>
+            </label>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>94%</td></tr>
+                <tr><td>Edge</td><td>94%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>93%</td></tr>
+                <tr><td>Safari</td><td>92%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> si :has() n’est pas disponible, on garde le style par défaut et on évite de dépendre de ce sélecteur pour des éléments critiques.
+          </div>
+        </article>
+
+        <article class="feature card" id="balance" data-name="text wrap balance">
+          <div class="feature-header">
+            <span class="feature-no">03</span>
+            <h2>text-wrap: balance</h2>
+          </div>
+          <p class="feature-text">Cette propriété améliore la ligne de titre en répartissant mieux les mots. Le résultat est plus lisible sans modifier le contenu HTML.</p>
+          <pre><code>h2 {
+  max-width: 18ch;
+  text-wrap: balance;
+}</code></pre>
+
+          <div class="demo demo-balance">
+            <h3>Un titre plus propre et plus lisible</h3>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>91%</td></tr>
+                <tr><td>Edge</td><td>91%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>90%</td></tr>
+                <tr><td>Safari</td><td>89%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> si la propriété n’est pas supportée, le texte revient à un comportement classique de rupture de ligne.
+          </div>
+        </article>
+
+        <article class="feature card" id="colormix" data-name="color mix color-mix()">
+          <div class="feature-header">
+            <span class="feature-no">04</span>
+            <h2>color-mix()</h2>
+          </div>
+          <p class="feature-text">Les couleurs peuvent être mélangées directement en CSS. C’est une très bonne solution pour créer des thèmes cohérents sans avoir à préparer des palettes statiques.</p>
+          <pre><code>.button {
+  background: color-mix(in srgb, #2563eb 60%, white 40%);
+}</code></pre>
+
+          <div class="demo demo-color">
+            <div class="color-box navy">Mix</div>
+            <div class="color-box peach">Thème</div>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>93%</td></tr>
+                <tr><td>Edge</td><td>93%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>92%</td></tr>
+                <tr><td>Safari</td><td>90%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> on définit une couleur de base avant la fonction, ce qui garantit un rendu acceptable dans les navigateurs anciens.
+          </div>
+        </article>
+
+        <article class="feature card" id="property" data-name="custom property @property">
+          <div class="feature-header">
+            <span class="feature-no">05</span>
+            <h2>@property</h2>
+          </div>
+          <p class="feature-text">@property permet de déclarer un type de variable personnalisé. Cela rend les animations et les valeurs CSS plus sûres et plus prédictibles.</p>
+          <pre><code>@property --progress {
+  syntax: "&lt;number&gt;";
+  inherits: false;
+  initial-value: 0;
+}
+
+.bar { width: calc(var(--progress) * 1%); }</code></pre>
+
+          <div class="demo demo-property" style="--progress: 72;">
+            <div class="progress-bar">
+              <span>72%</span>
+            </div>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>88%</td></tr>
+                <tr><td>Edge</td><td>88%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>86%</td></tr>
+                <tr><td>Safari</td><td>85%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> on peut utiliser une couleur ou une largeur fixe si la propriété n’est pas prise en charge.
+          </div>
+        </article>
+
+        <article class="feature card" id="layer" data-name="cascade layers @layer">
+          <div class="feature-header">
+            <span class="feature-no">06</span>
+            <h2>@layer</h2>
+          </div>
+          <p class="feature-text">Les layers permettent de contrôler la priorité des feuilles de style. C’est utile pour organiser une architecture CSS propre et éviter les conflits.</p>
+          <pre><code>@layer theme {
+  .button { background: #f97316; }
+}
+
+@layer base {
+  .button { background: #d1d5db; }
+}</code></pre>
+
+          <div class="demo demo-layer">
+            <p class="layer-demo-text">Le layer <strong>theme</strong> a plus de priorité que le layer <strong>base</strong>.</p>
+            <button class="layer-button" type="button">Bouton</button>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>92%</td></tr>
+                <tr><td>Edge</td><td>92%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>90%</td></tr>
+                <tr><td>Safari</td><td>89%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> si l’on n’utilise pas de layer, les règles classiques conservent leur comportement habituel, mais avec moins de contrôle.
+          </div>
+        </article>
+
+        <article class="feature card" id="lightdark" data-name="light-dark function">
+          <div class="feature-header">
+            <span class="feature-no">07</span>
+            <h2>light-dark()</h2>
+          </div>
+          <p class="feature-text">La fonction light-dark() choisit automatiquement une couleur selon le thème du système. C’est très pratique pour les interfaces qui doivent s’adapter au mode clair / sombre.</p>
+          <pre><code>.card {
+  color: light-dark(#111827, #f3f4f6);
+  background: light-dark(#fff, #111827);
+}</code></pre>
+
+          <div class="demo demo-lightdark">
+            <div class="theme-card">Mode sombre / clair</div>
+          </div>
+
+          <table class="compatibility">
+            <thead>
+              <tr><th>Navigateur</th><th>Support</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Chrome</td><td>93%</td></tr>
+              <tr><td>Edge</td><td>93%</td></tr>
+              <tr><td>Firefox</td><td>92%</td></tr>
+              <tr><td>Safari</td><td>90%</td></tr>
+            </tbody>
+          </table>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> on définit des couleurs classiques en premier, puis on ajoute la version automatique avec light-dark().
+          </div>
+        </article>
+
+        <article class="feature card" id="clamp" data-name="clamp min max">
+          <div class="feature-header">
+            <span class="feature-no">08</span>
+            <h2>clamp()</h2>
+          </div>
+          <p class="feature-text">Clamp() permet de limiter une valeur entre un minimum et un maximum avec un comportement fluide. C’est très utile pour les tailles responsive.</p>
+          <pre><code>.title {
+  font-size: clamp(1.2rem, 2vw, 2.5rem);
+  width: clamp(15rem, 50vw, 40rem);
+}</code></pre>
+
+          <div class="demo demo-clamp">
+            <p>Un titre qui s’adapte à l’écran</p>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>97%</td></tr>
+                <tr><td>Edge</td><td>97%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>96%</td></tr>
+                <tr><td>Safari</td><td>95%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> on peut utiliser des tailles fixes ou des media queries pour garder un rendu stable sur les anciens navigateurs.
+          </div>
+        </article>
+
+        <article class="feature card" id="snap" data-name="scroll snap">
+          <div class="feature-header">
+            <span class="feature-no">09</span>
+            <h2>scroll-snap-type</h2>
+          </div>
+          <p class="feature-text">Le scrolling peut s’arrêter sur des points précis. C’est particulièrement pratique pour les carrousels ou les pages sectionnées.</p>
+          <pre><code>.gallery {
+  display: grid;
+  grid-auto-flow: column;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}</code></pre>
+
+          <div class="demo demo-snap">
+            <div class="snap-track">
+              <div class="snap-card">1</div>
+              <div class="snap-card">2</div>
+              <div class="snap-card">3</div>
+            </div>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>96%</td></tr>
+                <tr><td>Edge</td><td>96%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>95%</td></tr>
+                <tr><td>Safari</td><td>94%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> en l’absence de support, le scroll reste classique et l’utilisateur avance librement dans la galerie.
+          </div>
+        </article>
+
+        <article class="feature card" id="ratio" data-name="aspect-ratio">
+          <div class="feature-header">
+            <span class="feature-no">10</span>
+            <h2>aspect-ratio</h2>
+          </div>
+          <p class="feature-text">La propriété aspect-ratio permet de donner une proportion fixe à un bloc sans calcul manuel. Le layout reste cohérent sur tous les écrans.</p>
+          <pre><code>.media {
+  aspect-ratio: 16 / 9;
+  width: min(100%, 24rem);
+}</code></pre>
+
+          <div class="demo demo-ratio">
+            <div class="ratio-box">16:9</div>
+          </div>
+
+          <div class="compatibility-grid">
+            <table class="compatibility">
+              <thead>
+                <tr><th>Chromium</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Chrome</td><td>97%</td></tr>
+                <tr><td>Edge</td><td>97%</td></tr>
+              </tbody>
+            </table>
+            <table class="compatibility">
+              <thead>
+                <tr><th>Autres</th><th>Support</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Firefox</td><td>96%</td></tr>
+                <tr><td>Safari</td><td>95%</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="fallback">
+            <strong>Fallback :</strong> on fixe une hauteur minimale ou on utilise un conteneur avec dimensions standards si la propriété n’est pas disponible.
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
